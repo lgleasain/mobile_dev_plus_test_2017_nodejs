@@ -1,9 +1,14 @@
 {
-  "name": "esp-example",
-  "version": "0.0.1",
-  "description": "my first socket.io app",
-  "dependencies": {
-    "express": "^4.15.2",
-    "socket.io": "^1.7.3"
-  }
+    "name": "esp-example",
+    "version": "0.0.1",
+    "description": "my first socket.io app",
+    "main": "index.js",
+    "scripts": {
+        "start": "node index.js"
+    },
+    "dependencies": {
+        "express": "^4.15.2",
+        "socket.io": "^1.7.3",
+        "twitter": "^1.7.0"
+    }
 }

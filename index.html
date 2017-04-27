@@ -2,6 +2,174 @@
 <script src="/socket.io/socket.io.js"></script>
 <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
 <script>
+ function getLetter(letter){
+     if(letter === 'r'){
+         structure = {0:true,
+                      1:true,
+                      2:true,
+                      3:false,
+                      4:true,
+                      5:true,
+                      6:false,
+                      7:true,
+                      8:true,
+                      9:false,
+                      10:true,
+                      11:false,
+                      12:true,
+                      13:true,
+                      14:true,
+                      15:true
+         }
+     }
+     if(letter === 't'){
+         structure = {0:true,
+                      1:false,
+                      2:false,
+                      3:false,
+                      4:false,
+                      5:false,
+                      6:false,
+                      7:true,
+                      8:true,
+                      9:true,
+                      10:true,
+                      11:true,
+                      12:false,
+                      13:false,
+                      14:false,
+                      15:true
+         }
+     }
+     if(letter === 'e'){
+         structure = {0:true,
+                      1:false,
+                      2:false,
+                      3:true,
+                      4:true,
+                      5:false,
+                      6:true,
+                      7:true,
+                      8:true,
+                      9:true,
+                      10:false,
+                      11:true,
+                      12:true,
+                      13:true,
+                      14:true,
+                      15:true
+         }
+     }
+     if(letter === 's'){
+         structure = {0:true,
+                      1:false,
+                      2:true,
+                      3:true,
+                      4:true,
+                      5:true,
+                      6:false,
+                      7:true,
+                      8:true,
+                      9:false,
+                      10:true,
+                      11:true,
+                      12:false,
+                      13:true,
+                      14:true,
+                      15:true
+         }
+     }
+     if(letter === 'm'){
+         structure = {0:true,
+                      1:true,
+                      2:true,
+                      3:true,
+                      4:false,
+                      5:false,
+                      6:true,
+                      7:true,
+                      8:true,
+                      9:false,
+                      10:false,
+                      11:false,
+                      12:true,
+                      13:true,
+                      14:true,
+                      15:true
+         }
+     }
+     if(letter === 'o'){
+         structure = {0:true,
+                      1:true,
+                      2:true,
+                      3:true,
+                      4:true,
+                      5:false,
+                      6:false,
+                      7:true,
+                      8:true,
+                      9:false,
+                      10:false,
+                      11:true,
+                      12:true,
+                      13:true,
+                      14:true,
+                      15:true
+         }
+     }
+     if(letter === 'w'){
+         structure = {0:true,
+                      1:true,
+                      2:true,
+                      3:true,
+                      4:true,
+                      5:true,
+                      6:false,
+                      7:false,
+                      8:false,
+                      9:false,
+                      10:false,
+                      11:true,
+                      12:true,
+                      13:true,
+                      14:true,
+                      15:true
+         }
+     }
+     if(letter === '!'){
+         structure = {0:false,
+                      1:false,
+                      2:false,
+                      3:false,
+                      4:true,
+                      5:false,
+                      6:true,
+                      7:true,
+                      8:false,
+                      9:false,
+                      10:false,
+                      11:false,
+                      12:false,
+                      13:false,
+                      14:false,
+                      15:false
+         }
+     }
+
+     return structure
+ }
+ function returnFullArray(letter, foreground, background){
+     structure = getLetter(letter);
+     fullArray = {}
+     for(i = 0; i < 16; i = i + 1){
+         if(structure[i]){
+             fullArray[i] = foreground
+         }else{
+             fullArray[i] = background
+         }
+     }
+     return fullArray
+ }
  $(function () {
      var socket = io();
      $('form').submit(function(){
@@ -27,23 +195,54 @@
          setTimeout(function(){
              socket.emit('chat message',
                          {0:{ 'r': 150, 'g': 0, 'b': 0},
-                          1:{ 'r': 150, 'g': 0, 'b': 0},
-                          2:{ 'r': 150, 'g': 0, 'b': 0},
-                          3:{ 'r': 150, 'g': 0, 'b': 0},
+                          1:{ 'r': 0, 'g': 0, 'b': 0},
+                          2:{ 'r': 0, 'g': 0, 'b': 0},
+                          3:{ 'r': 0, 'g': 0, 'b': 0},
                           4:{ 'r': 150, 'g': 0, 'b': 0},
-                          5:{ 'r': 150, 'g': 0, 'b': 0},
-                          6:{ 'r': 150, 'g': 0, 'b': 0},
-                          7:{ 'r': 150, 'g': 0, 'b': 0},
+                          5:{ 'r': 0, 'g': 0, 'b': 0},
+                          6:{ 'r': 0, 'g': 0, 'b': 0},
+                          7:{ 'r': 0, 'g': 0, 'b': 0},
                           8:{ 'r': 150, 'g': 0, 'b': 0},
-                          9:{ 'r': 150, 'g': 0, 'b': 0},
-                          10:{ 'r': 150, 'g': 0, 'b': 0},
-                          11:{ 'r': 150, 'g': 0, 'b': 0},
+                          9:{ 'r': 0, 'g': 0, 'b': 0},
+                          10:{ 'r': 0, 'g': 0, 'b': 0},
+                          11:{ 'r': 0, 'g': 0, 'b': 0},
                           12:{ 'r': 150, 'g': 0, 'b': 00},
-                          13:{ 'r': 150, 'g': 0, 'b': 00},
-                          14:{ 'r': 150, 'g': 0, 'b': 0},
-                          15:{ 'r': 150, 'g': 0, 'b': 0}
+                          13:{ 'r': 0, 'g': 0, 'b': 00},
+                          14:{ 'r': 0, 'g': 0, 'b': 0},
+                          15:{ 'r': 0, 'g': 0, 'b': 0}
                          });
          }, 1000);
+         setTimeout(function(){
+             socket.emit('chat message',
+                         returnFullArray('m', { 'r': 150, 'g': 0, 'b': 0},
+                                         { 'r': 0, 'g': 0, 'b': 0})
+             );
+         }, 2000);
+         setTimeout(function(){
+             socket.emit('chat message',
+                         returnFullArray('e', { 'r': 10, 'g': 140, 'b': 0},
+                                         { 'r': 0, 'g': 0, 'b': 0})
+             );
+         }, 3000);
+         setTimeout(function(){
+             socket.emit('chat message',
+                         returnFullArray('o', { 'r': 10, 'g': 140, 'b': 0},
+                                         { 'r': 0, 'g': 0, 'b': 0})
+             );
+         }, 4000);
+         setTimeout(function(){
+             socket.emit('chat message',
+                         returnFullArray('w', { 'r': 10, 'g': 140, 'b': 0},
+                                         { 'r': 0, 'g': 0, 'b': 0})
+             );
+         }, 5000);
+         setTimeout(function(){
+             socket.emit('chat message',
+                         returnFullArray('!', { 'r': 10, 'g': 140, 'b': 0},
+                                         { 'r': 0, 'g': 0, 'b': 0})
+             );
+         }, 6000);
+
          $('#m').val('');
          return false;
      });
